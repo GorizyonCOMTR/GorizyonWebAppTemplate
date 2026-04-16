@@ -32,7 +32,14 @@ jobs:
 
       - name: APK Derleme (Build)
         run: ./gradlew assembleDebug
-
+        
+      - name: APK Dosyasını Artifact Olarak Kaydet
+        uses: actions/upload-artifact@v4
+        with:
+          name: Gorizyon-Build-${{ github.event.client_payload.app_name }}-${{ github.run_id }}
+          path: app/build/outputs/apk/debug/*.apk
+          retention-days: 5 # 5 gün boyunca indirilebilir kalır
+      
       - name: APK Dosyasını Sunucuya Geri Gönder
         run: |
           # APK'yı bul ve tam yolunu al
