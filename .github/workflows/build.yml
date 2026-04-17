@@ -21,15 +21,6 @@ jobs:
       - name: Gradelw Yetkisini Düzenle
         run: chmod +x gradlew
 
-      - name: swv.properties ve Strings Güncelle (Gelişmiş Arama)
-        run: |
-          # swv.properties dosyasını bul ve içine yaz
-          # find komutu dosyayı nerede olursa olsun bulur ve sed ile değiştirir
-          find . -name "swv.properties" -exec sed -i "s|^app.url=.*|app.url=${{ github.event.client_payload.app_url }}|g" {} +
-          
-          # Strings.xml içindeki APP_NAME_PLACEHOLDER'ı bul ve değiştir
-          find . -name "strings.xml" -exec sed -i "s|APP_NAME_PLACEHOLDER|${{ github.event.client_payload.app_name }}|g" {} +
-
       - name: APK Derleme (Build)
         run: ./gradlew assembleDebug
         
@@ -40,17 +31,4 @@ jobs:
           path: app/build/outputs/apk/debug/*.apk
           retention-days: 5 # 5 gün boyunca indirilebilir kalır
       
-      - name: APK Dosyasını Sunucuya Geri Gönder
-        run: |
-          # APK'yı bul ve tam yolunu al
-          APK_PATH=$(find app/build/outputs/apk/debug/ -name "*.apk" | head -n 1)
-          
-          # Dosya adını sadece log için yazdıralım
-          echo "Bulunan APK: $APK_PATH"
-          
-          # Curl ile gönderim (İsimleri senin PHP ile eşledim)
-          curl -v -X POST \
-          -H "Expect:" \
-          -F "file=@$APK_PATH" \
-          -F "build_id=${{ github.event.client_payload.app_id }}" \
-          "https://gorizyon.com.tr/builder/callback.php?token=123"
+    
