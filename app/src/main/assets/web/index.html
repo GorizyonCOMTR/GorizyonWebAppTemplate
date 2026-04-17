@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <title>Block Puzzle</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="gameHeader">
+        <div class="stat-box">
+            <div class="stat-label">Skor</div>
+            <div class="stat-value" id="score">0</div>
+        </div>
+        <div class="stat-box">
+            <div class="stat-label">En İyi</div>
+            <div class="stat-value" id="highScore">0</div>
+        </div>
+    </div>
+
+    <div id="gameContainer">
+        <canvas id="gridCanvas"></canvas>
+        <div id="poolContainer">
+            <div class="pool-slot" id="slot0"></div>
+            <div class="pool-slot" id="slot1"></div>
+            <div class="pool-slot" id="slot2"></div>
+        </div>
+    </div>
+
+    <!-- Game Over Modal -->
+    <div id="gameOverModal" class="modal">
+        <div class="modal-content">
+            <h2>Oyun Bitti!</h2>
+            <p>Skorun: <span id="finalScore">0</span></p>
+            <div class="reward-text">💰 Ödül: Izgara Temizleme</div>
+            <button class="btn btn-ad" id="watchAdBtn">📺 Reklam İzle</button>
+            <button class="btn btn-secondary" id="restartBtn">🔄 Baştan Başla</button>
+        </div>
+    </div>
+
+    <!-- Ad Loading Modal -->
+    <div id="adLoadingModal" class="modal">
+        <div class="modal-content">
+            <h2 style="color: #feca57;">Reklam Yükleniyor...</h2>
+            <div class="loading-spinner"></div>
+        </div>
+    </div>
+
+    <script src="game.js"></script>
+</body>
+</html>
