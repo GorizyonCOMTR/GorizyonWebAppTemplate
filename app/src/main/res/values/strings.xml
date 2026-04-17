@@ -1,5 +1,5 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
-    <string name="app_name">Gorizyon WebView Builder</string>
+    <string name="app_name">GRZ Block Master!</string>
    <string name="app_desc">A professional WebView framework integrated with advanced native features for building sophisticated hybrid applications.</string>
    <string name="image_view">Image View</string>
 	<string name="loading">Loading</string>
